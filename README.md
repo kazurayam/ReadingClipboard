@@ -37,12 +37,30 @@ So I have implemented my [`chromedriverfactory`, version 0.6.6](https://github.c
 
 You can see the source of Katalon Test Case at
 
-- []()
+- [Test Cases/readingClipboard](https://github.com/kazurayam/ReadingClipboard/blob/main/Scripts/readClipboard/Script1674635624363.groovy)
 
-https://forum.katalon.com/t/value-from-buffer-copied-link-to-be-assigned-to-groovy-variable/83681/2
+Here I will quote the lines where the test case instanciates Chrome browser with preference that grands access to clipboard:
 
-https://developer.mozilla.org/en-US/docs/Web/API/Clipboard/readText
+```
+System.setProperty("webdriver.chrome.driver", DriverFactory.getChromeDriverPath())
+ChromeDriverFactory cdFactory = ChromeDriverFactory.newChromeDriverFactory()
 
-https://docs.katalon.com/docs/legacy/katalon-studio-enterprise/keywords/web-ui-keywords/webui-execute-javascript
+// configure Chrome Preference so that JavaScript is granted to to read Clipboard
+cdFactory.addChromePreferencesModifier(ChromePreferencesModifiers.grantAccessToClipboard())
+
+// open Chrome browser here
+LaunchedChromeDriver launched = cdFactory.newChromeDriver()
+
+// let WebUI.* keywords talk to the Chrome
+WebDriver driver = launched.getDriver()
+DriverFactory.changeWebDriver(driver)
+```
+
+
+You need to download a jar from
+
+- [Releases, chromedriverfactory, v0.6.6](https://github.com/kazurayam/chromedriverfactory/releases/tag/0.6.6)
+
+and locate the jar into the `Drivers` folder of your own Katalon project.
 
 
