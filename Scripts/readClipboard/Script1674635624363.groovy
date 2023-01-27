@@ -15,7 +15,7 @@ TestObject makeTestObject(String xpath) {
 	return tObj
 }
 
-String url = "h"
+String url = "https://codepen.io/RevCred/pen/vxXrww"
 TestObject locatorIFrame = makeTestObject("//iframe[@id='result']")
 TestObject locatorButton = makeTestObject("//div[@id='copy']")
 
